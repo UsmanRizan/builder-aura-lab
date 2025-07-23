@@ -1,15 +1,34 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  Search, 
-  Plus, 
+import {
+  Search,
+  Plus,
   Filter,
   Download,
   CreditCard,
@@ -21,7 +40,7 @@ import {
   CheckCircle,
   Clock,
   AlertCircle,
-  Banknote
+  Banknote,
 } from "lucide-react";
 
 export default function Payments() {
@@ -29,17 +48,83 @@ export default function Payments() {
   const [statusFilter, setStatusFilter] = useState("all");
 
   const payments = [
-    { id: "PAY-001", invoiceId: "INV-001", customer: "Johnson Residence", amount: 2450, method: "Credit Card", status: "completed", date: "2024-12-15", type: "automatic" },
-    { id: "PAY-002", invoiceId: "INV-004", customer: "Eco Home Solutions", amount: 3850, method: "Bank Transfer", status: "completed", date: "2024-12-14", type: "manual" },
-    { id: "PAY-003", invoiceId: "INV-002", customer: "Green Valley Corp", amount: 4450, method: "Check", status: "pending", date: "2024-12-13", type: "manual" },
-    { id: "PAY-004", invoiceId: "INV-003", customer: "Smith Solar Farm", amount: 15200, method: "Wire Transfer", status: "failed", date: "2024-12-12", type: "automatic" },
-    { id: "PAY-005", invoiceId: "INV-005", customer: "TechCorp Headquarters", amount: 6250, method: "Credit Card", status: "processing", date: "2024-12-11", type: "automatic" }
+    {
+      id: "PAY-001",
+      invoiceId: "INV-001",
+      customer: "Johnson Residence",
+      amount: 2450,
+      method: "Credit Card",
+      status: "completed",
+      date: "2024-12-15",
+      type: "automatic",
+    },
+    {
+      id: "PAY-002",
+      invoiceId: "INV-004",
+      customer: "Eco Home Solutions",
+      amount: 3850,
+      method: "Bank Transfer",
+      status: "completed",
+      date: "2024-12-14",
+      type: "manual",
+    },
+    {
+      id: "PAY-003",
+      invoiceId: "INV-002",
+      customer: "Green Valley Corp",
+      amount: 4450,
+      method: "Check",
+      status: "pending",
+      date: "2024-12-13",
+      type: "manual",
+    },
+    {
+      id: "PAY-004",
+      invoiceId: "INV-003",
+      customer: "Smith Solar Farm",
+      amount: 15200,
+      method: "Wire Transfer",
+      status: "failed",
+      date: "2024-12-12",
+      type: "automatic",
+    },
+    {
+      id: "PAY-005",
+      invoiceId: "INV-005",
+      customer: "TechCorp Headquarters",
+      amount: 6250,
+      method: "Credit Card",
+      status: "processing",
+      date: "2024-12-11",
+      type: "automatic",
+    },
   ];
 
   const recurringPayments = [
-    { id: "REC-001", customer: "Johnson Residence", amount: 150, frequency: "Monthly", nextDate: "2025-01-15", status: "active" },
-    { id: "REC-002", customer: "Green Valley Corp", amount: 890, frequency: "Quarterly", nextDate: "2025-03-14", status: "active" },
-    { id: "REC-003", customer: "Davis Family Home", amount: 200, frequency: "Monthly", nextDate: "2025-01-03", status: "paused" }
+    {
+      id: "REC-001",
+      customer: "Johnson Residence",
+      amount: 150,
+      frequency: "Monthly",
+      nextDate: "2025-01-15",
+      status: "active",
+    },
+    {
+      id: "REC-002",
+      customer: "Green Valley Corp",
+      amount: 890,
+      frequency: "Quarterly",
+      nextDate: "2025-03-14",
+      status: "active",
+    },
+    {
+      id: "REC-003",
+      customer: "Davis Family Home",
+      amount: 200,
+      frequency: "Monthly",
+      nextDate: "2025-01-03",
+      status: "paused",
+    },
   ];
 
   const getStatusColor = (status: string) => {
@@ -76,17 +161,25 @@ export default function Payments() {
     }
   };
 
-  const filteredPayments = payments.filter(payment => {
-    const matchesSearch = payment.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         payment.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         payment.invoiceId.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === "all" || payment.status === statusFilter;
+  const filteredPayments = payments.filter((payment) => {
+    const matchesSearch =
+      payment.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      payment.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      payment.invoiceId.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      statusFilter === "all" || payment.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
 
-  const totalProcessed = payments.filter(p => p.status === "completed").reduce((sum, payment) => sum + payment.amount, 0);
-  const totalPending = payments.filter(p => p.status === "pending" || p.status === "processing").reduce((sum, payment) => sum + payment.amount, 0);
-  const totalFailed = payments.filter(p => p.status === "failed").reduce((sum, payment) => sum + payment.amount, 0);
+  const totalProcessed = payments
+    .filter((p) => p.status === "completed")
+    .reduce((sum, payment) => sum + payment.amount, 0);
+  const totalPending = payments
+    .filter((p) => p.status === "pending" || p.status === "processing")
+    .reduce((sum, payment) => sum + payment.amount, 0);
+  const totalFailed = payments
+    .filter((p) => p.status === "failed")
+    .reduce((sum, payment) => sum + payment.amount, 0);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -109,11 +202,16 @@ export default function Payments() {
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-yellow-600 to-blue-600 bg-clip-text text-transparent">
                     SolarFlow
                   </h1>
-                  <p className="text-sm text-muted-foreground">Payment Processing</p>
+                  <p className="text-sm text-muted-foreground">
+                    Payment Processing
+                  </p>
                 </div>
               </div>
             </div>
-            <Button size="sm" className="bg-gradient-to-r from-yellow-500 to-blue-500 hover:from-yellow-600 hover:to-blue-600">
+            <Button
+              size="sm"
+              className="bg-gradient-to-r from-yellow-500 to-blue-500 hover:from-yellow-600 hover:to-blue-600"
+            >
               <Plus className="h-4 w-4 mr-2" />
               Process Payment
             </Button>
@@ -126,53 +224,81 @@ export default function Payments() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card className="border-0 shadow-md bg-white/60 backdrop-blur-sm dark:bg-gray-800/60">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Total Processed</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Total Processed
+              </CardTitle>
               <DollarSign className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">${totalProcessed.toLocaleString()}</div>
+              <div className="text-2xl font-bold">
+                ${totalProcessed.toLocaleString()}
+              </div>
               <p className="text-xs text-green-600 flex items-center">
                 <TrendingUp className="h-3 w-3 mr-1" />
                 +12.5% from last month
               </p>
             </CardContent>
           </Card>
-          
+
           <Card className="border-0 shadow-md bg-white/60 backdrop-blur-sm dark:bg-gray-800/60">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Pending Payments</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Pending Payments
+              </CardTitle>
               <Clock className="h-4 w-4 text-yellow-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">${totalPending.toLocaleString()}</div>
+              <div className="text-2xl font-bold">
+                ${totalPending.toLocaleString()}
+              </div>
               <p className="text-xs text-muted-foreground">
-                {payments.filter(p => p.status === "pending" || p.status === "processing").length} transactions
+                {
+                  payments.filter(
+                    (p) => p.status === "pending" || p.status === "processing",
+                  ).length
+                }{" "}
+                transactions
               </p>
             </CardContent>
           </Card>
-          
+
           <Card className="border-0 shadow-md bg-white/60 backdrop-blur-sm dark:bg-gray-800/60">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Failed Payments</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Failed Payments
+              </CardTitle>
               <AlertCircle className="h-4 w-4 text-red-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">${totalFailed.toLocaleString()}</div>
+              <div className="text-2xl font-bold">
+                ${totalFailed.toLocaleString()}
+              </div>
               <p className="text-xs text-red-600">
-                {payments.filter(p => p.status === "failed").length} failed transactions
+                {payments.filter((p) => p.status === "failed").length} failed
+                transactions
               </p>
             </CardContent>
           </Card>
-          
+
           <Card className="border-0 shadow-md bg-white/60 backdrop-blur-sm dark:bg-gray-800/60">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Recurring Revenue</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Recurring Revenue
+              </CardTitle>
               <Banknote className="h-4 w-4 text-blue-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">${recurringPayments.filter(r => r.status === "active").reduce((sum, r) => sum + r.amount, 0).toLocaleString()}/mo</div>
+              <div className="text-2xl font-bold">
+                $
+                {recurringPayments
+                  .filter((r) => r.status === "active")
+                  .reduce((sum, r) => sum + r.amount, 0)
+                  .toLocaleString()}
+                /mo
+              </div>
               <p className="text-xs text-muted-foreground">
-                {recurringPayments.filter(r => r.status === "active").length} active subscriptions
+                {recurringPayments.filter((r) => r.status === "active").length}{" "}
+                active subscriptions
               </p>
             </CardContent>
           </Card>
@@ -184,7 +310,7 @@ export default function Payments() {
             <TabsTrigger value="transactions">Payment Transactions</TabsTrigger>
             <TabsTrigger value="recurring">Recurring Payments</TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="transactions">
             <Card className="border-0 shadow-md bg-white/60 backdrop-blur-sm dark:bg-gray-800/60">
               <CardHeader>
@@ -192,7 +318,9 @@ export default function Payments() {
                   <CreditCard className="h-5 w-5" />
                   Payment Transactions
                 </CardTitle>
-                <CardDescription>Track and manage all payment transactions</CardDescription>
+                <CardDescription>
+                  Track and manage all payment transactions
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-col md:flex-row gap-4 mb-6">
@@ -243,24 +371,41 @@ export default function Payments() {
                     <TableBody>
                       {filteredPayments.map((payment) => (
                         <TableRow key={payment.id}>
-                          <TableCell className="font-medium">{payment.id}</TableCell>
+                          <TableCell className="font-medium">
+                            {payment.id}
+                          </TableCell>
                           <TableCell>
-                            <Link to={`/invoices/${payment.invoiceId}`} className="text-blue-600 hover:underline">
+                            <Link
+                              to={`/invoices/${payment.invoiceId}`}
+                              className="text-blue-600 hover:underline"
+                            >
                               {payment.invoiceId}
                             </Link>
                           </TableCell>
                           <TableCell>{payment.customer}</TableCell>
-                          <TableCell className="font-semibold">${payment.amount.toLocaleString()}</TableCell>
+                          <TableCell className="font-semibold">
+                            ${payment.amount.toLocaleString()}
+                          </TableCell>
                           <TableCell>{payment.method}</TableCell>
                           <TableCell>
-                            <Badge variant="outline" className={payment.type === "automatic" ? "text-blue-600" : "text-gray-600"}>
+                            <Badge
+                              variant="outline"
+                              className={
+                                payment.type === "automatic"
+                                  ? "text-blue-600"
+                                  : "text-gray-600"
+                              }
+                            >
                               {payment.type}
                             </Badge>
                           </TableCell>
                           <TableCell>
                             <div className="flex items-center gap-2">
                               {getStatusIcon(payment.status)}
-                              <Badge variant="secondary" className={getStatusColor(payment.status)}>
+                              <Badge
+                                variant="secondary"
+                                className={getStatusColor(payment.status)}
+                              >
                                 {payment.status}
                               </Badge>
                             </div>
@@ -274,7 +419,7 @@ export default function Payments() {
               </CardContent>
             </Card>
           </TabsContent>
-          
+
           <TabsContent value="recurring">
             <Card className="border-0 shadow-md bg-white/60 backdrop-blur-sm dark:bg-gray-800/60">
               <CardHeader>
@@ -282,7 +427,9 @@ export default function Payments() {
                   <Calendar className="h-5 w-5" />
                   Recurring Payments
                 </CardTitle>
-                <CardDescription>Manage automated payment schedules</CardDescription>
+                <CardDescription>
+                  Manage automated payment schedules
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="rounded-md border bg-white/50 dark:bg-gray-700/50">
@@ -300,13 +447,20 @@ export default function Payments() {
                     <TableBody>
                       {recurringPayments.map((payment) => (
                         <TableRow key={payment.id}>
-                          <TableCell className="font-medium">{payment.id}</TableCell>
+                          <TableCell className="font-medium">
+                            {payment.id}
+                          </TableCell>
                           <TableCell>{payment.customer}</TableCell>
-                          <TableCell className="font-semibold">${payment.amount.toLocaleString()}</TableCell>
+                          <TableCell className="font-semibold">
+                            ${payment.amount.toLocaleString()}
+                          </TableCell>
                           <TableCell>{payment.frequency}</TableCell>
                           <TableCell>{payment.nextDate}</TableCell>
                           <TableCell>
-                            <Badge variant="secondary" className={getStatusColor(payment.status)}>
+                            <Badge
+                              variant="secondary"
+                              className={getStatusColor(payment.status)}
+                            >
                               {payment.status}
                             </Badge>
                           </TableCell>

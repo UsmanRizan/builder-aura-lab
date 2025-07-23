@@ -13,7 +13,7 @@ export default function Projects() {
         "Customer communication portal",
         "Photo documentation and reports",
         "Quality assurance checklists",
-        "Project cost and profitability analysis"
+        "Project cost and profitability analysis",
       ]}
     />
   );

@@ -13,7 +13,7 @@ export default function Reports() {
         "Installation project timelines",
         "Custom report builder",
         "Export to PDF and Excel",
-        "Automated report scheduling"
+        "Automated report scheduling",
       ]}
     />
   );

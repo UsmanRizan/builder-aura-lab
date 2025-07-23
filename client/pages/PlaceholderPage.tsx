@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Sun, ArrowLeft, Construction } from "lucide-react";
 
 interface PlaceholderPageProps {
@@ -9,7 +15,11 @@ interface PlaceholderPageProps {
   features?: string[];
 }
 
-export default function PlaceholderPage({ title, description, features = [] }: PlaceholderPageProps) {
+export default function PlaceholderPage({
+  title,
+  description,
+  features = [],
+}: PlaceholderPageProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Header */}
@@ -47,20 +57,27 @@ export default function PlaceholderPage({ title, description, features = [] }: P
                 <Construction className="h-12 w-12 text-yellow-600" />
               </div>
               <CardTitle className="text-2xl">{title}</CardTitle>
-              <CardDescription className="text-lg">{description}</CardDescription>
+              <CardDescription className="text-lg">
+                {description}
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="text-center">
                 <p className="text-muted-foreground mb-6">
-                  This feature is currently under development. The page will include advanced functionality to help you manage your solar service business efficiently.
+                  This feature is currently under development. The page will
+                  include advanced functionality to help you manage your solar
+                  service business efficiently.
                 </p>
-                
+
                 {features.length > 0 && (
                   <div className="space-y-4">
                     <h3 className="font-semibold text-lg">Planned Features:</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       {features.map((feature, index) => (
-                        <li key={index} className="flex items-center justify-center gap-2">
+                        <li
+                          key={index}
+                          className="flex items-center justify-center gap-2"
+                        >
                           <div className="h-1.5 w-1.5 bg-primary rounded-full"></div>
                           {feature}
                         </li>
@@ -68,12 +85,16 @@ export default function PlaceholderPage({ title, description, features = [] }: P
                     </ul>
                   </div>
                 )}
-                
+
                 <div className="mt-8 pt-6 border-t">
                   <p className="text-sm text-muted-foreground mb-4">
-                    Would you like me to implement this page? Just let me know what specific functionality you need!
+                    Would you like me to implement this page? Just let me know
+                    what specific functionality you need!
                   </p>
-                  <Button asChild className="bg-gradient-to-r from-yellow-500 to-blue-500 hover:from-yellow-600 hover:to-blue-600">
+                  <Button
+                    asChild
+                    className="bg-gradient-to-r from-yellow-500 to-blue-500 hover:from-yellow-600 hover:to-blue-600"
+                  >
                     <Link to="/">Return to Dashboard</Link>
                   </Button>
                 </div>

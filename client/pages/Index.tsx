@@ -1,17 +1,24 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  Sun, 
-  DollarSign, 
-  FileText, 
-  TrendingUp, 
-  Users, 
-  Battery, 
+import {
+  Sun,
+  DollarSign,
+  FileText,
+  TrendingUp,
+  Users,
+  Battery,
   Zap,
   Calendar,
   AlertCircle,
@@ -22,7 +29,7 @@ import {
   CreditCard,
   Receipt,
   BarChart3,
-  MapPin
+  MapPin,
 } from "lucide-react";
 
 export default function Index() {
@@ -35,15 +42,15 @@ export default function Index() {
       change: "+12.5%",
       trend: "up",
       icon: DollarSign,
-      color: "text-green-600"
+      color: "text-green-600",
     },
     {
       title: "Active Customers",
       value: "89",
       change: "+5",
-      trend: "up", 
+      trend: "up",
       icon: Users,
-      color: "text-blue-600"
+      color: "text-blue-600",
     },
     {
       title: "Pending Invoices",
@@ -51,7 +58,7 @@ export default function Index() {
       change: "-2",
       trend: "down",
       icon: FileText,
-      color: "text-orange-600"
+      color: "text-orange-600",
     },
     {
       title: "Energy Generated",
@@ -59,21 +66,60 @@ export default function Index() {
       change: "+8.2%",
       trend: "up",
       icon: Zap,
-      color: "text-yellow-600"
-    }
+      color: "text-yellow-600",
+    },
   ];
 
   const recentInvoices = [
-    { id: "INV-001", customer: "Johnson Residence", amount: "$2,450", status: "paid", date: "Dec 15, 2024" },
-    { id: "INV-002", customer: "Green Valley Corp", amount: "$8,900", status: "pending", date: "Dec 14, 2024" },
-    { id: "INV-003", customer: "Smith Solar Farm", amount: "$15,200", status: "overdue", date: "Dec 10, 2024" },
-    { id: "INV-004", customer: "Eco Home Solutions", amount: "$3,850", status: "paid", date: "Dec 8, 2024" }
+    {
+      id: "INV-001",
+      customer: "Johnson Residence",
+      amount: "$2,450",
+      status: "paid",
+      date: "Dec 15, 2024",
+    },
+    {
+      id: "INV-002",
+      customer: "Green Valley Corp",
+      amount: "$8,900",
+      status: "pending",
+      date: "Dec 14, 2024",
+    },
+    {
+      id: "INV-003",
+      customer: "Smith Solar Farm",
+      amount: "$15,200",
+      status: "overdue",
+      date: "Dec 10, 2024",
+    },
+    {
+      id: "INV-004",
+      customer: "Eco Home Solutions",
+      amount: "$3,850",
+      status: "paid",
+      date: "Dec 8, 2024",
+    },
   ];
 
   const upcomingProjects = [
-    { name: "Residential Installation - Davis", progress: 75, status: "In Progress", dueDate: "Dec 20" },
-    { name: "Commercial Solar Array - TechCorp", progress: 45, status: "In Progress", dueDate: "Jan 15" },
-    { name: "Maintenance - Green Valley", progress: 0, status: "Scheduled", dueDate: "Dec 18" }
+    {
+      name: "Residential Installation - Davis",
+      progress: 75,
+      status: "In Progress",
+      dueDate: "Dec 20",
+    },
+    {
+      name: "Commercial Solar Array - TechCorp",
+      progress: 45,
+      status: "In Progress",
+      dueDate: "Jan 15",
+    },
+    {
+      name: "Maintenance - Green Valley",
+      progress: 0,
+      status: "Scheduled",
+      dueDate: "Dec 18",
+    },
   ];
 
   const getStatusColor = (status: string) => {
@@ -117,23 +163,50 @@ export default function Index() {
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-yellow-600 to-blue-600 bg-clip-text text-transparent">
                     SolarFlow
                   </h1>
-                  <p className="text-sm text-muted-foreground">Solar Service Management</p>
+                  <p className="text-sm text-muted-foreground">
+                    Solar Service Management
+                  </p>
                 </div>
               </div>
             </div>
             <nav className="hidden md:flex items-center space-x-6">
-              <Link to="/" className="text-sm font-medium text-primary">Dashboard</Link>
-              <Link to="/invoices" className="text-sm font-medium text-muted-foreground hover:text-primary">Invoices</Link>
-              <Link to="/payments" className="text-sm font-medium text-muted-foreground hover:text-primary">Payments</Link>
-              <Link to="/customers" className="text-sm font-medium text-muted-foreground hover:text-primary">Customers</Link>
-              <Link to="/reports" className="text-sm font-medium text-muted-foreground hover:text-primary">Reports</Link>
+              <Link to="/" className="text-sm font-medium text-primary">
+                Dashboard
+              </Link>
+              <Link
+                to="/invoices"
+                className="text-sm font-medium text-muted-foreground hover:text-primary"
+              >
+                Invoices
+              </Link>
+              <Link
+                to="/payments"
+                className="text-sm font-medium text-muted-foreground hover:text-primary"
+              >
+                Payments
+              </Link>
+              <Link
+                to="/customers"
+                className="text-sm font-medium text-muted-foreground hover:text-primary"
+              >
+                Customers
+              </Link>
+              <Link
+                to="/reports"
+                className="text-sm font-medium text-muted-foreground hover:text-primary"
+              >
+                Reports
+              </Link>
             </nav>
             <div className="flex items-center space-x-3">
               <Button variant="outline" size="sm">
                 <Calendar className="h-4 w-4 mr-2" />
                 This Month
               </Button>
-              <Button size="sm" className="bg-gradient-to-r from-yellow-500 to-blue-500 hover:from-yellow-600 hover:to-blue-600">
+              <Button
+                size="sm"
+                className="bg-gradient-to-r from-yellow-500 to-blue-500 hover:from-yellow-600 hover:to-blue-600"
+              >
                 <Plus className="h-4 w-4 mr-2" />
                 New Invoice
               </Button>
@@ -146,7 +219,10 @@ export default function Index() {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {stats.map((stat, index) => (
-            <Card key={index} className="border-0 shadow-md bg-white/60 backdrop-blur-sm dark:bg-gray-800/60">
+            <Card
+              key={index}
+              className="border-0 shadow-md bg-white/60 backdrop-blur-sm dark:bg-gray-800/60"
+            >
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">
                   {stat.title}
@@ -155,7 +231,9 @@ export default function Index() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{stat.value}</div>
-                <p className={`text-xs ${stat.trend === 'up' ? 'text-green-600' : 'text-red-600'} flex items-center`}>
+                <p
+                  className={`text-xs ${stat.trend === "up" ? "text-green-600" : "text-red-600"} flex items-center`}
+                >
                   <TrendingUp className="h-3 w-3 mr-1" />
                   {stat.change} from last month
                 </p>
@@ -191,23 +269,33 @@ export default function Index() {
               <CardContent>
                 <div className="space-y-4">
                   {recentInvoices.map((invoice) => (
-                    <div key={invoice.id} className="flex items-center justify-between p-4 rounded-lg border bg-white/50 dark:bg-gray-700/50">
+                    <div
+                      key={invoice.id}
+                      className="flex items-center justify-between p-4 rounded-lg border bg-white/50 dark:bg-gray-700/50"
+                    >
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-2">
                           {getStatusIcon(invoice.status)}
                           <div>
                             <p className="font-medium">{invoice.id}</p>
-                            <p className="text-sm text-muted-foreground">{invoice.customer}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {invoice.customer}
+                            </p>
                           </div>
                         </div>
                       </div>
                       <div className="text-right">
                         <p className="font-semibold">{invoice.amount}</p>
                         <div className="flex items-center space-x-2">
-                          <Badge variant="secondary" className={getStatusColor(invoice.status)}>
+                          <Badge
+                            variant="secondary"
+                            className={getStatusColor(invoice.status)}
+                          >
                             {invoice.status}
                           </Badge>
-                          <p className="text-sm text-muted-foreground">{invoice.date}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {invoice.date}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -224,25 +312,41 @@ export default function Index() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <Button variant="outline" className="h-20 flex-col space-y-2" asChild>
+                  <Button
+                    variant="outline"
+                    className="h-20 flex-col space-y-2"
+                    asChild
+                  >
                     <Link to="/invoices/new">
                       <FileText className="h-6 w-6" />
                       <span className="text-sm">Create Invoice</span>
                     </Link>
                   </Button>
-                  <Button variant="outline" className="h-20 flex-col space-y-2" asChild>
+                  <Button
+                    variant="outline"
+                    className="h-20 flex-col space-y-2"
+                    asChild
+                  >
                     <Link to="/payments">
                       <CreditCard className="h-6 w-6" />
                       <span className="text-sm">Process Payment</span>
                     </Link>
                   </Button>
-                  <Button variant="outline" className="h-20 flex-col space-y-2" asChild>
+                  <Button
+                    variant="outline"
+                    className="h-20 flex-col space-y-2"
+                    asChild
+                  >
                     <Link to="/customers/new">
                       <Users className="h-6 w-6" />
                       <span className="text-sm">Add Customer</span>
                     </Link>
                   </Button>
-                  <Button variant="outline" className="h-20 flex-col space-y-2" asChild>
+                  <Button
+                    variant="outline"
+                    className="h-20 flex-col space-y-2"
+                    asChild
+                  >
                     <Link to="/reports">
                       <BarChart3 className="h-6 w-6" />
                       <span className="text-sm">View Reports</span>
@@ -262,7 +366,9 @@ export default function Index() {
                   <Battery className="h-5 w-5" />
                   Active Projects
                 </CardTitle>
-                <CardDescription>Installation and maintenance status</CardDescription>
+                <CardDescription>
+                  Installation and maintenance status
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {upcomingProjects.map((project, index) => (
